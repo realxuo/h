@@ -1,0 +1,21 @@
+{
+    "sourceName": "UniqueStream",
+    "iconUrl": "https://anime.uniquestream.net/favicon.ico",
+    "author": {
+        "name": "xuo",
+        "icon": "https://github.com/YourName.png",
+        "url": "https://github.com/YourName"
+    },
+    "version": "1.0.0",
+    "language": "English (SUB)",
+    "streamType": "HLS",
+    "quality": "Auto",
+    "baseUrl": "https://anime.uniquestream.net",
+    "searchBaseUrl": "https://anime.uniquestream.net/api/v1/search?query=%s&t=all",
+    "scriptUrl": "https://raw.githubusercontent.com/uunforgivable/h/main/uniquestream.js",
+    "type": "anime",
+    "downloadSupport": false,
+    "asyncJS": true,
+    "streamAsyncJS": false,
+    "softsub": true
+}
