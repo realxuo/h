@@ -1,9 +1,9 @@
 {
   "sourceName": "HiAnime (DUB)",
-  "iconUrl": "https://gitea.com/uunforgivable/HiAnime-Dub/src/branch/main/hianime.png",
+  "iconUrl": "https://github.com/realxuo/h/blob/main/hianime.png",
   "author": {
     "name": "xuo",
-    "icon": "https://gitea.com/uunforgivable/profile/src/branch/main/Char%20Aznable.jpg"
+    "icon": "https://github.com/realxuo/profiles-/blob/main/Char%20Aznable.jpg"
   },
   "version": "1.0.0",
   "language": "English",
@@ -16,6 +16,6 @@
   "asyncJS": true,
   "softsub": true,
   "downloadSupport": true,
-   "supportsSora": true,
+  "supportsSora": true,
   "supportsLuna": true
 }
