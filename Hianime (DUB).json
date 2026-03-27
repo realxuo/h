@@ -1,0 +1,21 @@
+{
+  "sourceName": "HiAnime (DUB)",
+  "iconUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2LK1qckqvJ5agj5ZtZZnv19seqho7r6JCMg&s",
+  "author": {
+    "name": "xuo",
+    "icon": "https://github.com/realxuo/profiles-/blob/main/Char%20Aznable.jpg"
+  },
+  "version": "1.0.0",
+  "language": "English",
+  "streamType": "HLS",
+  "quality": "1080p",
+  "baseUrl": "https://aniwatchtv.to/",
+  "searchBaseUrl": "https://aniwatchtv.to/search?keyword=",
+  "scriptUrl": "https://raw.githubusercontent.com/uunforgivable/h/main/hianime.js",
+  "type": "anime",
+  "asyncJS": true,
+  "softsub": true,
+  "downloadSupport": true,
+  "supportsSora": true,
+  "supportsLuna": true
+}
