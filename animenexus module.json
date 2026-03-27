@@ -1,0 +1,21 @@
+{
+    "sourceName": "Anime Nexus",
+    "iconUrl": "https://anime.nexus/favicon.ico",
+    "author": {
+        "name": "xuo",
+        "icon": "https://anime.nexus/favicon.ico",
+        "url": "https://anime.nexus"
+    },
+    "version": "1.0.0",
+    "language": "English (SUB)",
+    "streamType": "HLS",
+    "quality": "Auto",
+    "baseUrl": "https://anime.nexus",
+    "searchBaseUrl": "https://anime.nexus/browse?search=%s",
+    "scriptUrl": "https://raw.githubusercontent.com/realxuo/h/main/animenexus.js",
+    "type": "anime",
+    "downloadSupport": false,
+    "asyncJS": true,
+    "streamAsyncJS": true,
+    "softsub": true
+}
