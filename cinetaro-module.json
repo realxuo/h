@@ -6,7 +6,7 @@
         "icon": "https://i.pinimg.com/236x/77/d4/80/77d48046ce17c15bf3883b9a4dfb0d4a.jpg",
         "url": "https://cinetaro.tv"
     },
-    "version": "1.0.0",
+    "version": "1.0.2",
     "language": "English",
     "streamType": "HLS",
     "quality": "Auto",
