@@ -8,25 +8,30 @@ async function searchResults(keyword) {
         const html = await res.text();
 
         const results = [];
-        const itemRegex = /<div class="flw-item">([\s\S]*?)<\/div>\s*<\/div>\s*<\/div>/g;
-        const hrefRegex = /href="([^"]+)"[^>]*title="([^"]+)"/;
-        const imgRegex = /data-src="([^"]+)"/;
-        const typeRegex = /tick-eps[^>]*>[^<]*([A-Za-z\s]+)<\/div>/;
 
+        // Extract each .flw-item block
+        const itemRegex = /class="flw-item">([\s\S]*?)class="clearfix"><\/div>\s*<\/div>/g;
         let match;
         while ((match = itemRegex.exec(html)) !== null) {
             const block = match[1];
-            const hrefMatch = hrefRegex.exec(block);
-            const imgMatch = imgRegex.exec(block);
+
+            // href and title from film-poster-ahref or film-name anchor
+            const hrefMatch = block.match(/href="(\/(?:details|watch|ani)[^"]+)"[^>]*title="([^"]+)"/);
             if (!hrefMatch) continue;
 
             const href = hrefMatch[1];
-            const title = hrefMatch[2];
+            const title = hrefMatch[2].replace(/&#039;/g, "'").replace(/&amp;/g, "&");
+
+            // image — prefer data-src, fall back to src
+            const imgMatch = block.match(/data-src="(https:\/\/[^"]+)"/) || block.match(/src="(https:\/\/image\.tmdb[^"]+)"/);
             const image = imgMatch ? imgMatch[1] : "";
 
-            results.push({ title: title, image: image, href: href });
+            if (href && title) {
+                results.push({ title: title, image: image, href: href });
+            }
         }
 
+        console.log("[cinetaro] search results: " + results.length);
         return JSON.stringify(results);
     } catch (e) {
         console.log("searchResults error: " + e);
@@ -59,16 +64,16 @@ async function extractDetails(href) {
 
 async function extractEpisodes(href) {
     try {
-        // href like /watch/202555?tv&ep=1 or /details/202555?tv
-        // Get the watch page to scrape episode list
+        // href like /details/202555?tv or /watch/202555?tv
         var watchUrl = href;
-        if (href.includes("/details/")) {
-            // Convert details page to watch page
-            var idMatch = href.match(/\/details\/(\d+)/);
-            if (idMatch) {
-                var type = href.includes("?tv") ? "tv" : "m";
-                watchUrl = "/watch/" + idMatch[1] + "?" + type + "&ep=1";
-            }
+
+        // Always convert to watch URL
+        var idMatch = href.match(/\/(details|watch)\/(\d+)/);
+        if (idMatch) {
+            var showId = idMatch[2];
+            var isTV = href.includes("?tv") || href.includes("&tv");
+            var type = isTV ? "tv" : "m";
+            watchUrl = "/watch/" + showId + "?" + type + "&ep=1";
         }
 
         const res = await soraFetch(BASE_URL + watchUrl);
