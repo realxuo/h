@@ -1,0 +1,21 @@
+{
+    "sourceName": "Cinetaro",
+    "iconUrl": "https://cinetaro.tv/public/logo/favicon.png",
+    "author": {
+        "name": "Xuo",
+        "icon": "https://i.pinimg.com/236x/77/d4/80/77d48046ce17c15bf3883b9a4dfb0d4a.jpg",
+        "url": "https://cinetaro.tv"
+    },
+    "version": "1.0.0",
+    "language": "English",
+    "streamType": "HLS",
+    "quality": "Auto",
+    "baseUrl": "https://cinetaro.tv",
+    "searchBaseUrl": "https://cinetaro.tv/search?keyword=%s",
+    "scriptUrl": "https://raw.githubusercontent.com/realxuo/h/main/cinetaro.js",
+    "type": "movie",
+    "downloadSupport": false,
+    "asyncJS": true,
+    "streamAsyncJS": true,
+    "softsub": true
+}
