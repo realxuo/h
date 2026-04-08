@@ -192,12 +192,34 @@ async function extractStreamUrl(episodeId) {
             streamUrl = sourcesData.sources[0].file || sourcesData.sources[0].url || "";
         }
 
-        // Extract English subtitle
+        // Extract English subtitle from RapidCloud tracks
         if (sourcesData.tracks) {
             var enTrack = sourcesData.tracks.find(function(t) {
                 return t.label && /english/i.test(t.label) && t.kind === "captions";
             }) || sourcesData.tracks.find(function(t) { return t.kind === "captions"; });
             if (enTrack) subtitle = enTrack.file || enTrack.src || "";
+        }
+
+        // Fallback: wyzie.io subtitles using TMDB ID
+        if (!subtitle) {
+            try {
+                var tmdbId = episodeId.split("-")[0];
+                var wyzieRes = await soraFetch(
+                    "https://sub.wyzie.io/search?id=" + tmdbId + "&key=wyzie-53f263aa7f417f95f806e4bd5434eff7"
+                );
+                var wyzieData = await wyzieRes.json();
+                if (Array.isArray(wyzieData)) {
+                    var enSub = wyzieData.find(function(s) {
+                        return s.language === "en" && !s.isHearingImpaired;
+                    }) || wyzieData.find(function(s) { return s.language === "en"; });
+                    if (enSub) {
+                        subtitle = enSub.url;
+                        console.log("[cinetaro] wyzie subtitle: " + subtitle);
+                    }
+                }
+            } catch (e) {
+                console.log("[cinetaro] wyzie failed: " + e);
+            }
         }
 
         if (!streamUrl) {
